@@ -1,0 +1,60 @@
+Using recursion (It gives TLE)
+---------------
+Two solutions that gave me TLE
+
+1) int fun(vector<int>& nums,int i,bool a){
+     if(i==nums.size()) return 0;
+     if(a==true){
+         return max(nums[i]+fun(nums,i+1,!a),fun(nums,i+1,a));
+     }
+     return fun(nums,i+1,!a);
+   }
+   int rob(vector<int>& nums) {
+     return fun(nums,0,true);
+   }
+
+2) int fun(vector<int>& nums,int i,bool a){
+      if(i==nums.size()) return 0;
+      if(a==1){
+           return max(nums[i]+fun(nums,i+1,1-a),fun(nums,i+1,a));
+      }
+      return fun(nums,i+1,1-a);
+   }
+   int rob(vector<int>& nums) {
+      vector<vector<int>> dp;
+      return fun(nums,0,1);
+   }
+
+I applied Dynamic Programming
+-----------------------------
+1) 2D DP
+   -----
+
+    int fun(vector<int>& nums,int i,int state,vector<vector<int>>& dp){
+        if(i==nums.size()) return 0;
+        if(dp[i][state]!=-1) return dp[i][state];
+        if(state==1){
+            return dp[i][state]=max(nums[i]+fun(nums,i+1,1-state,dp),fun(nums,i+1,state,dp));
+        }
+        return dp[i][state]=fun(nums,i+1,1-state,dp);
+    }
+    int rob(vector<int>& nums) {
+        vector<vector<int>> dp(nums.size()+1,vector<int>(2,-1));
+        return fun(nums,0,1,dp);
+    }
+
+2) 1D DP
+   -----
+
+   int fun(vector<int>& nums,int i,vector<int>& dp){
+        if(i>=nums.size()) return 0;
+        if(dp[i]!=-1) return dp[i];
+        return dp[i]=max(nums[i]+fun(nums,i+2,dp),fun(nums,i+1,dp));
+    }
+    int rob(vector<int>& nums) {
+        vector<int> dp(nums.size(),-1);
+        return fun(nums,0,dp);
+    }
+
+
+
