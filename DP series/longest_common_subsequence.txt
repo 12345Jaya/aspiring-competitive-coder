@@ -1,0 +1,32 @@
+when we are traversing, if both the strings are equal we decrement pointers for both the strings, otherwise we need to check if maximum occurs when one of the pointer moves.
+
+Memoization DP
+--------------
+
+int fun(string& a,string& b,int i,int j,vector<vector<int>>& dp){
+    if(i<0 or j<0) return 0;
+    if(dp[i][j]!=-1) return dp[i][j];
+    if(a[i]==b[j]) return dp[i][j]=1+fun(a,b,i-1,j-1,dp);
+    return dp[i][j]=max(fun(a,b,i-1,j,dp),fun(a,b,i,j-1,dp));
+}
+int longestCommonSubsequence(string text1, string text2) {
+    int m=text1.size(),n=text2.size();
+    vector<vector<int>> dp(m,vector<int>(n,-1));
+    return fun(text1,text2,m-1,n-1,dp);
+}
+
+Tabulation DP
+-------------
+
+  int m=text1.size(),n=text2.size();
+  vector<vector<int>> dp(m+1,vector<int>(n+1));
+  for(int i=0;i<m+1;i++){
+       for(int j=0;j<n+1;j++){
+            if(i==0 or j==0) dp[i][j]=0;
+            else{
+                if(text1[i-1]==text2[j-1]) dp[i][j]=1+dp[i-1][j-1]; 
+                else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+       }
+  }
+  return dp[m][n];
