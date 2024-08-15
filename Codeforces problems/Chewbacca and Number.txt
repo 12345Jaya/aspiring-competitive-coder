@@ -1,0 +1,16 @@
+https://codeforces.com/contest/514/problem/A
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    long long x,a=1,b=0;
+    cin>>x;
+    while(x>0){
+        int r=x%10;
+        if(9-r<r and !(x/10==0 and r==9))  r=9-r;
+        b=r*a+b;
+        a*=10;
+        x=x/10;
+    }
+    cout<<b<<endl;
+}
