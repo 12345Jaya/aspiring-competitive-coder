@@ -1,0 +1,15 @@
+https://codeforces.com/problemset/problem/110/A
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    long long n,c=0;
+    cin>>n;
+    while(n>0){
+        int r=n%10;
+        if(r==4 || r==7) c++;
+        n=n/10;
+    }
+    if(c==4 or c==7) cout<<"YES";
+    else  cout<<"NO";
+}
