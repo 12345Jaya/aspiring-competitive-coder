@@ -1,0 +1,10 @@
+https://codeforces.com/problemset/problem/546/A
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    long long k,n,w;
+    cin>>k>>n>>w;
+    long long a=w*(w+1)/2;
+    (a*k<=n)?cout<<0:cout<<a*k-n;
+}
