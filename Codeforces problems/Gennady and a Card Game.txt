@@ -1,0 +1,19 @@
+https://codeforces.com/problemset/problem/1097/A?mobile=true
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int f=0;
+    string start;
+    cin>>start;
+    string s[5];
+    for(int i=0;i<5;i++) cin>>s[i];
+    for(int i=0;i<5;i++){
+        if(s[i][0]==start[0] || s[i][1]==start[1]){
+            f=1;
+            break;
+        }
+    }
+    if(f==0) cout<<"NO";
+    else cout<<"YES";
+}
