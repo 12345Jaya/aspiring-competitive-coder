@@ -1,0 +1,17 @@
+https://codeforces.com/problemset/problem/1095/A
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    string s,ans="";
+    cin>>s;
+    int a=0,b=1;
+    while(a<n){
+        ans+=s[a];
+        a+=b;
+        b++;
+    }
+    cout<<ans;
+}
