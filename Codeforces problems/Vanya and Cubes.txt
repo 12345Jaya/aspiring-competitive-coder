@@ -1,0 +1,15 @@
+https://codeforces.com/problemset/problem/492/A
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int a=1,count=0;
+    while(n>=a*(a+1)/2){
+        n-=a*(a+1)/2;
+        count++;
+        a++;
+    }
+    cout<<count;
+}
