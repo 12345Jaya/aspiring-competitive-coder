@@ -1,0 +1,43 @@
+1) string lcs(int n, int m, string str1, string str2) {
+        vector<vector<string>> dp(n+1,vector<string>(m+1));
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i==0 or j==0) dp[i][j]="";
+                else{
+                    if(str1[i-1]==str2[j-1]) 
+                      dp[i][j]=dp[i-1][j-1]+str1[i-1];
+                    else
+                      dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[n][m];
+   }
+
+
+
+2)  string lcs(int n, int m, string str1, string str2) {
+        vector<vector<int>> dp(n+1,vector<int>(m+1));
+        for(int i=0;i<n+1;i++){
+            for(int j=0;j<m+1;j++){
+                if(i==0 or j==0) dp[i][j]=0;
+                else{
+                    if(str1[i-1]==str2[j-1]) 
+                      dp[i][j]=1+dp[i-1][j-1];
+                    else
+                      dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        int k=n,l=m;
+        string ans="";
+        while(k>=0 and l>=0){
+            if(str1[k]==str2[l]){
+                ans=str1[k]+ans;
+                k--;  l--;
+            }
+            else if(dp[k-1][l]>=dp[k][l-1]) k--;
+            else  l--;
+        }
+        return ans;
+    }
